@@ -4,8 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:you_movies/model/movies_model.dart';
 import 'package:you_movies/services/apis/api_urls.dart';
 
-
-
 class ApiServices {
   Future<List<MoviesModel>> getMovies(String url) async {
     try {

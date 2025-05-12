@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:you_movies/utils/constants/app_sizes.dart';
 import 'package:you_movies/widgets/bottom_navbar.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load();
   runApp(const MyApp());
 }
 

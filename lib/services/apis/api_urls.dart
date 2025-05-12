@@ -1,21 +1,26 @@
-import 'package:you_movies/services/apis/secret/api_key.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final baseUrl = "https://www.googleapis.com/youtube/v3/search";
-final englishMovies =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=english+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
-final hindiMovies =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=hindi+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
-final sciFi =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=sci+fi+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
+final String apiKey = dotenv.env['API_KEY'] ?? '';
 
-final thriller =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=thriller+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
+final String baseUrl = "https://www.googleapis.com/youtube/v3/search";
 
-final comedy =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=comedy+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
+final String englishMovies =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=english+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
 
-final crime =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=crime+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
+final String hindiMovies =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=hindi+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
 
-final popular =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=popular+movies+full+movie&videoDuration=long&order=viewCount&key=$API_KEY";
+final String sciFi =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=sci+fi+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
+
+final String thriller =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=thriller+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
+
+final String comedy =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=comedy+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
+
+final String crime =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=crime+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
+
+final String popular =
+    "$baseUrl?part=snippet&type=video&maxResults=25&q=popular+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
