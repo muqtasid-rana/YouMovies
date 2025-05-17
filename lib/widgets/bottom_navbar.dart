@@ -1,9 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:you_movies/utils/constants/colors.dart';
 import 'package:you_movies/views/home_screen/home_screen.dart';
+import 'package:you_movies/views/search_screen/search_screen.dart';
 import 'package:you_movies/views/settings_screen/settings_screen.dart';
-import '../views/search_screen/search_screen.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key});
@@ -24,35 +24,25 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: GNav(
-        backgroundColor: Colors.black,
-        color: Colors.white,
-        activeColor: kRed,
-        tabBackgroundColor: kRed.withOpacity(0.1),
-        gap: 8,
-        padding: const EdgeInsets.all(20),
-        selectedIndex: _selectedIndex,
-        onTabChange: (index) {
+      backgroundColor: bgColor,
+      bottomNavigationBar: CurvedNavigationBar(
+        index: _selectedIndex,
+        backgroundColor: bgColor,
+        color: kRed,
+        buttonBackgroundColor: Colors.white,
+        animationDuration: const Duration(milliseconds: 300),
+        items: const <Widget>[
+          Icon(Icons.search, size: 30, color: Colors.white),
+          Icon(Icons.home, size: 30, color: Colors.white),
+          Icon(Icons.person, size: 30, color: Colors.white),
+        ],
+        onTap: (index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-        tabs: const [
-          GButton(
-            icon: Icons.search,
-            text: 'Search',
-          ),
-          GButton(
-            icon: Icons.home,
-            text: 'Home',
-          ),
-          GButton(
-            icon: Icons.person,
-            text: 'Profile',
-          ),
-        ],
       ),
+      body: _screens[_selectedIndex],
     );
   }
 }
