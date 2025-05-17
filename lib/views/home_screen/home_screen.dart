@@ -3,6 +3,7 @@ import 'package:you_movies/model/movies_model.dart';
 import 'package:you_movies/utils/constants/colors.dart';
 import 'package:you_movies/utils/constants/paddings.dart';
 import 'package:you_movies/utils/constants/text_sizes.dart';
+import 'package:you_movies/utils/routes/route_names.dart';
 import 'package:you_movies/view_models/movies_view_model.dart';
 import 'package:you_movies/views/home_screen/widgets/moviebox.dart';
 import 'package:you_movies/widgets/custom_appbar.dart';
@@ -71,7 +72,13 @@ class HomeScreen extends StatelessWidget {
         future: moviesFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Container(
+              height: 40,
+              child: const Center(
+                  child: CircularProgressIndicator(
+                color: Colors.white,
+              )),
+            );
           }
 
           if (snapshot.hasError || !snapshot.hasData) {
@@ -85,18 +92,25 @@ class HomeScreen extends StatelessWidget {
 
           final movies = snapshot.data!;
 
-          // Use AppSizes.hp() to calculate responsive height
-          double listViewHeight =
-              AppSizes.hp(30); // Adjust 30% of screen height
+          double listViewHeight = AppSizes.hp(40);
 
           return SizedBox(
-            height: listViewHeight, // Make it responsive to screen size
+            height: listViewHeight,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: movies.length,
               separatorBuilder: (_, __) => const SizedBox(width: 10),
               itemBuilder: (context, index) {
-                return Moviebox(movie: movies[index]);
+                return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.showmovie,
+                          arguments: {
+                            'title': movies[index].title,
+                            'thumbnail': movies[index].thumbnailUrl,
+                            'description': movies[index].description
+                          });
+                    },
+                    child: Moviebox(movie: movies[index]));
               },
             ),
           );

@@ -24,3 +24,14 @@ final String crime =
 
 final String popular =
     "$baseUrl?part=snippet&type=video&maxResults=25&q=popular+movies+full+movie&videoDuration=long&order=viewCount&key=$apiKey";
+
+String buildSearchUrl(String query) {
+  final apiKey = dotenv.env['API_KEY'];
+  return "$baseUrl?part=snippet"
+      "&type=video"
+      "&maxResults=25"
+      "&q=${Uri.encodeComponent(query)}"
+      "&videoDuration=long"
+      "&order=viewCount"
+      "&key=$apiKey";
+}

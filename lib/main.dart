@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:you_movies/utils/constants/app_sizes.dart';
-import 'package:you_movies/widgets/bottom_navbar.dart';
+import 'package:you_movies/utils/routes/route_names.dart';
+import 'package:you_movies/utils/routes/routes.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'YouMovies',
-        home: CustomNavBar());
+        initialRoute: RouteNames.homescreen,
+        onGenerateRoute: Routes.generateRoutes);
   }
 }
